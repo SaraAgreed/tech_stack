@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, 
+    TouchableWithoutFeedback, 
+    View,
+    LayoutAnimation
+ } from 'react-native';
 import { CardSection } from './common';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class ListItems extends Component {
+    componentWillUpdate() { //this method is called before the component is about to render
+        LayoutAnimation.spring();
+    }
 /*    renderDescription() {
         const { library, selectedLibraryId } = this.props;
         if(library.id === selectedLibraryId) {
@@ -20,7 +27,11 @@ class ListItems extends Component {
     const { library, expanded } = this.props;
     if(expanded) {
         return (
-            <Text>{library.description}</Text>
+            <CardSection>
+                <Text style={{flex:1}}>
+                    {library.description}
+                </Text>
+            </CardSection>
         );
     }
 }
